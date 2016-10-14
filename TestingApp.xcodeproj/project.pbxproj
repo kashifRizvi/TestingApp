@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B5247CE1DB0EE2A00D88AA3 /* appleLogoWhiteBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4B5247CD1DB0EE2A00D88AA3 /* appleLogoWhiteBackground.jpg */; };
+		4B5247D01DB0F34700D88AA3 /* appleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5247CF1DB0F34700D88AA3 /* appleLogo.png */; };
 		4BD262281DA52A6000EB586D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD262271DA52A6000EB586D /* main.m */; };
 		4BD2622B1DA52A6000EB586D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2622A1DA52A6000EB586D /* AppDelegate.m */; };
 		4BD2622E1DA52A6000EB586D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2622D1DA52A6000EB586D /* ViewController.m */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B5247CD1DB0EE2A00D88AA3 /* appleLogoWhiteBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = appleLogoWhiteBackground.jpg; sourceTree = "<group>"; };
+		4B5247CF1DB0F34700D88AA3 /* appleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appleLogo.png; sourceTree = "<group>"; };
 		4BD262231DA52A6000EB586D /* TestingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD262271DA52A6000EB586D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BD262291DA52A6000EB586D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				4BD262321DA52A6000EB586D /* Assets.xcassets */,
 				4BD262341DA52A6000EB586D /* LaunchScreen.storyboard */,
 				4BD262371DA52A6000EB586D /* Info.plist */,
+				4B5247CD1DB0EE2A00D88AA3 /* appleLogoWhiteBackground.jpg */,
+				4B5247CF1DB0F34700D88AA3 /* appleLogo.png */,
 				4BD262261DA52A6000EB586D /* Supporting Files */,
 			);
 			path = TestingApp;
@@ -249,6 +255,8 @@
 				4BD262361DA52A6000EB586D /* LaunchScreen.storyboard in Resources */,
 				4BD262331DA52A6000EB586D /* Assets.xcassets in Resources */,
 				4BD262311DA52A6000EB586D /* Main.storyboard in Resources */,
+				4B5247CE1DB0EE2A00D88AA3 /* appleLogoWhiteBackground.jpg in Resources */,
+				4B5247D01DB0F34700D88AA3 /* appleLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +513,7 @@
 				4BD262521DA52A6000EB586D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BD262531DA52A6000EB586D /* Build configuration list for PBXNativeTarget "TestingAppTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +522,7 @@
 				4BD262551DA52A6000EB586D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BD262561DA52A6000EB586D /* Build configuration list for PBXNativeTarget "TestingAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +531,7 @@
 				4BD262581DA52A6000EB586D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
