@@ -17,7 +17,7 @@ UIPanGestureRecognizer *panGesture;
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSInteger n=arc4random() % 9 + 1;
-    n=1;
+    n=3;
     
     switch (n) {
         case 1:
@@ -62,6 +62,7 @@ UIPanGestureRecognizer *panGesture;
     [label setText:@"Drag me!!"];
     [label setBackgroundColor:[UIColor cyanColor]];
     [self.view addSubview:label];
+    label.userInteractionEnabled=YES;
     panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragLabel:)];
     panGesture.minimumNumberOfTouches = 1;
     [label addGestureRecognizer:panGesture];
@@ -69,9 +70,16 @@ UIPanGestureRecognizer *panGesture;
 
 - (void) dragLabel: (UIPanGestureRecognizer *) gesture{
     if (gesture.state==UIGestureRecognizerStateBegan) {
-        NSLog(@"Dragging began!!");
+        
+            NSLog(@"Dragging Began!!");
     }
+    
     if (gesture.state==UIGestureRecognizerStateEnded) {
+        UILabel *label=(UILabel *)gesture.view;
+        CGPoint newPoint=[gesture translationInView:label];
+        label.center=CGPointMake(label.center.x+newPoint.x, label.center.y+newPoint.y);
+        
+        [gesture setTranslation:CGPointZero inView:label];
         NSLog(@"Dragging Stopped!!");
     }
 }
@@ -102,9 +110,11 @@ UIPanGestureRecognizer *panGesture;
     imageView.image=[UIImage imageNamed:@"appleLogo.png"];
     imageView.userInteractionEnabled = YES;
     
+    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapRecognized:)];
+    [imageView addGestureRecognizer:tapGesture];
     UILongPressGestureRecognizer *longPressImage=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(imagePressed:)];
     [imageView addGestureRecognizer:longPressImage];
-    
+
     [self.view addSubview:imageView];
     
 }
@@ -114,6 +124,27 @@ UIPanGestureRecognizer *panGesture;
         UIAlertView *imageAlert=[[UIAlertView alloc]initWithTitle:@"Image Long Pressed" message:@"Try Pressing with multiple fingers." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [imageAlert show];
     }
+}
+
+- (void) tapRecognized: (UITapGestureRecognizer *) sender{
+        NSInteger numberOfTouches=sender.numberOfTouches;
+        NSLog(@" touches number %i",numberOfTouches);
+        UIAlertView *numberOfTouchesAlert;
+        switch (numberOfTouches) {
+            case 1:
+                numberOfTouchesAlert=[[UIAlertView alloc]initWithTitle:@"One Finger Touch" message:@"Touched with one finger only." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                break;
+            case 2:
+                numberOfTouchesAlert=[[UIAlertView alloc]initWithTitle:@"Two Finger Touch" message:@"Touched with Two fingers." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                break;
+            case 3:
+                numberOfTouchesAlert=[[UIAlertView alloc]initWithTitle:@"Three Finger Touch" message:@"Touched with Three fingers." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                break;
+                
+            default:
+                break;
+        }
+        [numberOfTouchesAlert show];
 }
 
 - (void) showView{
