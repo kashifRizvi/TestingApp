@@ -12,12 +12,13 @@
 
 @end
 UIPanGestureRecognizer *panGesture;
+UIView *pinchView;
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSInteger n=arc4random() % 9 + 1;
-    n=3;
+    n=4;
     
     switch (n) {
         case 1:
@@ -71,7 +72,7 @@ UIPanGestureRecognizer *panGesture;
 - (void) dragLabel: (UIPanGestureRecognizer *) gesture{
     if (gesture.state==UIGestureRecognizerStateBegan) {
         
-            NSLog(@"Dragging Began!!");
+        NSLog(@"Dragging Began!!");
     }
     
     if (gesture.state==UIGestureRecognizerStateEnded) {
@@ -109,12 +110,19 @@ UIPanGestureRecognizer *panGesture;
     UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(100.0, 100.0, 100.0, 100.0)];
     imageView.image=[UIImage imageNamed:@"appleLogo.png"];
     imageView.userInteractionEnabled = YES;
+    imageView.multipleTouchEnabled= YES;
     
-    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapRecognized:)];
-    [imageView addGestureRecognizer:tapGesture];
+    UITapGestureRecognizer *singleTapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapRecognized:)];
+    [singleTapGesture setNumberOfTouchesRequired:1];
+    [imageView addGestureRecognizer:singleTapGesture];
+    
+    UITapGestureRecognizer *doubleTapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTapRecognized:)];
+    [doubleTapGesture setNumberOfTouchesRequired:2];
+    [imageView addGestureRecognizer:doubleTapGesture];
+    
     UILongPressGestureRecognizer *longPressImage=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(imagePressed:)];
     [imageView addGestureRecognizer:longPressImage];
-
+    
     [self.view addSubview:imageView];
     
 }
@@ -126,29 +134,37 @@ UIPanGestureRecognizer *panGesture;
     }
 }
 
-- (void) tapRecognized: (UITapGestureRecognizer *) sender{
-        NSInteger numberOfTouches=sender.numberOfTouches;
-        NSLog(@" touches number %i",numberOfTouches);
-        UIAlertView *numberOfTouchesAlert;
-        switch (numberOfTouches) {
-            case 1:
-                numberOfTouchesAlert=[[UIAlertView alloc]initWithTitle:@"One Finger Touch" message:@"Touched with one finger only." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-                break;
-            case 2:
-                numberOfTouchesAlert=[[UIAlertView alloc]initWithTitle:@"Two Finger Touch" message:@"Touched with Two fingers." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-                break;
-            case 3:
-                numberOfTouchesAlert=[[UIAlertView alloc]initWithTitle:@"Three Finger Touch" message:@"Touched with Three fingers." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-                break;
-                
-            default:
-                break;
-        }
-        [numberOfTouchesAlert show];
+- (void) singleTapRecognized: (UITapGestureRecognizer *) sender{
+    NSInteger numberOfTouches=sender.numberOfTouches;
+    NSLog(@" Number of touches :  %li",numberOfTouches);
+    UIAlertView *numberOfTouchesAlert;
+    numberOfTouchesAlert=[[UIAlertView alloc]initWithTitle:@"One Finger Touch" message:@"Touched with one finger only." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    [numberOfTouchesAlert show];
+}
+
+- (void) doubleTapRecognized: (UITapGestureRecognizer *) sender{
+    NSInteger numberOfTouches=sender.numberOfTouches;
+    NSLog(@" Number of touches :  %li",numberOfTouches);
+    UIAlertView *numberOfTouchesAlert;
+    numberOfTouchesAlert=[[UIAlertView alloc]initWithTitle:@"Two Finger Touch" message:@"Touched with Two fingers." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    
+    [numberOfTouchesAlert show];
 }
 
 - (void) showView{
+    pinchView=[[UIView alloc]initWithFrame:CGRectMake(80, 200, 100, 300)];
+    [pinchView setBackgroundColor:[UIColor redColor]];
+    pinchView.userInteractionEnabled=YES;
+    pinchView.multipleTouchEnabled=YES;
+    UIPinchGestureRecognizer *pinchGesture=[[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(pinchGestureAction:)];
+    [[self view] addSubview:pinchView];
+    [pinchView addGestureRecognizer:pinchGesture];
     
+}
+
+- (void) pinchGestureAction: (UIPinchGestureRecognizer *) sender{
+    CGAffineTransform transform= CGAffineTransformMakeScale(sender.scale, sender.scale);
+    sender.view.transform=transform;
 }
 
 - (void) showSegmentedControl{
