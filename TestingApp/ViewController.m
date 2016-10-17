@@ -19,7 +19,7 @@ UIActivityIndicatorView *activityIndicator;
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSInteger n=(arc4random() % 4) + 1 ;
-    n=7;
+    n=8;
     
     switch (n) {
         case 1:
@@ -198,7 +198,7 @@ UIActivityIndicatorView *activityIndicator;
     slider.minimumValue=0;
     NSLog(@"%f", slider.value);
     [slider addTarget:self action:@selector(sliderHandle:) forControlEvents:UIControlEventValueChanged];
-    [slider addTarget:self action:@selector(sliderHandleStop) forControlEvents:UIControlEventTouchCancel];
+    [slider addTarget:self action:@selector(sliderHandleStop:) forControlEvents:UIControlEventTouchUpOutside];
     [label setBackgroundColor:[UIColor orangeColor]];
     [self.view addSubview:slider];
     [self.view addSubview:label];
@@ -218,6 +218,21 @@ UIActivityIndicatorView *activityIndicator;
 
 
 - (void) showSwitch{
+    UISwitch *switchView= [[UISwitch alloc]initWithFrame:CGRectMake(100, 100, 50, 20)];
+    [self.view addSubview:switchView];
+    [switchView addTarget:self action:@selector(handleSwitch:) forControlEvents:UIControlEventValueChanged];
+    
+}
+
+- (void) handleSwitch: (UISwitch *) sender{
+    NSString *status;
+    if (sender.isOn) {
+        status=@"Switch is ON!";
+    }
+    else
+        status=@"Switch is OFF!";
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Switched" message:status delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    [alert show];
     
 }
 
