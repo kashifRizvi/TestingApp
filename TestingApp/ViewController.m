@@ -11,14 +11,12 @@
 @interface ViewController ()
 
 @end
-UIPanGestureRecognizer *panGesture;
-UIView *pinchView;
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSInteger n=arc4random() % 9 + 1;
-    n=4;
+    NSInteger n=(arc4random() % 4) + 1 ;
+    n=6;
     
     switch (n) {
         case 1:
@@ -64,7 +62,7 @@ UIView *pinchView;
     [label setBackgroundColor:[UIColor cyanColor]];
     [self.view addSubview:label];
     label.userInteractionEnabled=YES;
-    panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragLabel:)];
+    UIPanGestureRecognizer *panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragLabel:)];
     panGesture.minimumNumberOfTouches = 1;
     [label addGestureRecognizer:panGesture];
 }
@@ -99,7 +97,7 @@ UIView *pinchView;
 }
 
 - (void) buttonClicked: (UIButton *) sender{
-    if (sender.state == UIGestureRecognizerStateEnded) {
+    if (sender.state == UIGestureRecognizerStateBegan) {
         UIAlertView *buttonAlert=[[UIAlertView alloc]initWithTitle:@"Button Pressed" message:@"Remove your finger from the Button." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
         [buttonAlert show];
     }
@@ -152,7 +150,7 @@ UIView *pinchView;
 }
 
 - (void) showView{
-    pinchView=[[UIView alloc]initWithFrame:CGRectMake(80, 200, 100, 300)];
+    UIView *pinchView=[[UIView alloc]initWithFrame:CGRectMake(80, 200, 100, 300)];
     [pinchView setBackgroundColor:[UIColor redColor]];
     pinchView.userInteractionEnabled=YES;
     pinchView.multipleTouchEnabled=YES;
@@ -168,11 +166,22 @@ UIView *pinchView;
 }
 
 - (void) showSegmentedControl{
-    
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithFrame:CGRectMake(100, 100, 200, 100)];
+    segmentedControl.backgroundColor=[UIColor redColor];
+    [self.view addSubview:segmentedControl];
 }
 
 - (void) showTextField{
-    
+    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(100, 100, 200, 100)];
+    textField.delegate=self;
+    [self.view addSubview:textField];
+    textField.backgroundColor=[UIColor orangeColor];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Return Key Pressed!" message:textField.text delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    [textField resignFirstResponder];
+    [alert show];
+    return YES;
 }
 
 - (void) showSliderLabel{
