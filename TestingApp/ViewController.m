@@ -12,11 +12,14 @@
 
 @end
 @implementation ViewController
+UILabel *label;
+UIProgressView *progressView;
+UIActivityIndicatorView *activityIndicator;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSInteger n=(arc4random() % 4) + 1 ;
-    n=6;
+    n=7;
     
     switch (n) {
         case 1:
@@ -186,7 +189,33 @@
 
 - (void) showSliderLabel{
     
+    UISlider *slider = [[UISlider alloc]initWithFrame:CGRectMake(10, 20, 200, 30)];
+    label = [[UILabel alloc]initWithFrame:CGRectMake(10, 60, 200, 50)];
+    progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(10, 150, 200, 20)];
+    activityIndicator= [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(100, 200, 50, 50)];
+    [activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    slider.maximumValue=100;
+    slider.minimumValue=0;
+    NSLog(@"%f", slider.value);
+    [slider addTarget:self action:@selector(sliderHandle:) forControlEvents:UIControlEventValueChanged];
+    [slider addTarget:self action:@selector(sliderHandleStop) forControlEvents:UIControlEventTouchCancel];
+    [label setBackgroundColor:[UIColor orangeColor]];
+    [self.view addSubview:slider];
+    [self.view addSubview:label];
+    [self.view addSubview:progressView];
+    [self.view addSubview:activityIndicator];
 }
+
+- (void) sliderHandle: (UISlider *) sender{
+    label.text=[NSString stringWithFormat:@"%.1f", sender.value];
+    progressView.progress=sender.value/100;
+    [activityIndicator startAnimating];
+}
+
+- (void) sliderHandleStop: (UISlider *) sender{
+    [activityIndicator stopAnimating];
+}
+
 
 - (void) showSwitch{
     
@@ -197,6 +226,7 @@
 }
 
 - (void) showProgressView{
+    UIProgressView *progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(10, 50, 200, 20)];
     
 }
 
