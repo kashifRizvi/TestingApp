@@ -14,12 +14,13 @@
 @implementation ViewController
 UILabel *label;
 UIProgressView *progressView;
+CGPoint originalCenter;
 UIActivityIndicatorView *activityIndicator;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSInteger n=(arc4random() % 4) + 1 ;
-    n=5;
+    n=1;
     
     switch (n) {
         case 1:
@@ -71,19 +72,27 @@ UIActivityIndicatorView *activityIndicator;
 }
 
 - (void) dragLabel: (UIPanGestureRecognizer *) gesture{
+    
+    UILabel *label=(UILabel *)gesture.view;
     if (gesture.state==UIGestureRecognizerStateBegan) {
-        
+        originalCenter=label.center;
         NSLog(@"Dragging Began!!");
     }
-    
-    if (gesture.state==UIGestureRecognizerStateEnded) {
-        UILabel *label=(UILabel *)gesture.view;
         CGPoint newPoint=[gesture translationInView:label];
         label.center=CGPointMake(label.center.x+newPoint.x, label.center.y+newPoint.y);
-        
-        [gesture setTranslation:CGPointZero inView:label];
+        NSLog(@"State is getting changed!");
+    
+    
+    if (gesture.state==UIGestureRecognizerStateEnded) {
+        label.center=originalCenter;
         NSLog(@"Dragging Stopped!!");
     }
+    
+    
+    
+    [gesture setTranslation:CGPointZero inView:label];
+    
+   
 }
 
 - (void) showButton{
