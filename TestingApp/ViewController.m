@@ -9,18 +9,27 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+{
+    UILabel *label;
+    UIProgressView *progressView;
+    CGPoint originalCenter;
+    UIActivityIndicatorView *activityIndicator;
+}
 @end
 @implementation ViewController
-UILabel *label;
-UIProgressView *progressView;
-CGPoint originalCenter;
-UIActivityIndicatorView *activityIndicator;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSInteger n=(arc4random() % 4) + 1 ;
-    n=1;
+    CGPoint buttonCenter=CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
+    UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(buttonCenter.x-70.0, buttonCenter.y-15.0, 140, 30)];
+    [button setTitle:@"Generate View" forState:UIControlStateNormal];
+    [button setBackgroundColor:[UIColor cyanColor]];
+    [button addTarget:self action:@selector(mainViewButtonHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
+- (void) mainViewButtonHandle: (UIButton *) sender{
+    NSInteger n=(arc4random() % 8) + 1 ;
     
     switch (n) {
         case 1:
@@ -47,16 +56,11 @@ UIActivityIndicatorView *activityIndicator;
         case 8:
             [self showSwitch];
             break;
-        case 9:
-            [self showActivityIndicator];
-            break;
-        case 10:
-            [self showProgressView];
-            break;
             
         default:
             break;
     }
+    [sender removeFromSuperview];
 }
 
 - (void) showLabel{
@@ -88,11 +92,8 @@ UIActivityIndicatorView *activityIndicator;
         NSLog(@"Dragging Stopped!!");
     }
     
-    
-    
     [gesture setTranslation:CGPointZero inView:label];
     
-   
 }
 
 - (void) showButton{
@@ -194,11 +195,13 @@ UIActivityIndicatorView *activityIndicator;
 }
 
 - (void) showTextField{
-    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(100, 100, 200, 100)];
+    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(60, 100, 200, 40)];
     textField.delegate=self;
+    [textField setBorderStyle:UITextBorderStyleRoundedRect];
+    [textField setPlaceholder:@"Enter text here.."];
     [self.view addSubview:textField];
-    textField.backgroundColor=[UIColor orangeColor];
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Return Key Pressed!" message:textField.text delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
     [textField resignFirstResponder];
@@ -255,14 +258,6 @@ UIActivityIndicatorView *activityIndicator;
     
 }
 
-- (void) showActivityIndicator{
-    
-}
-
-- (void) showProgressView{
-//    UIProgressView *progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(10, 50, 200, 20)];
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

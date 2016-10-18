@@ -85,7 +85,7 @@
 		4BD2621A1DA52A6000EB586D = {
 			isa = PBXGroup;
 			children = (
-				4BD262251DA52A6000EB586D /* TestingAppCodingVersion */,
+				4BD262251DA52A6000EB586D /* TestingApp */,
 				4BD2623F1DA52A6000EB586D /* TestingAppTests */,
 				4BD2624A1DA52A6000EB586D /* TestingAppUITests */,
 				4BD262241DA52A6000EB586D /* Products */,
@@ -102,7 +102,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4BD262251DA52A6000EB586D /* TestingAppCodingVersion */ = {
+		4BD262251DA52A6000EB586D /* TestingApp */ = {
 			isa = PBXGroup;
 			children = (
 				4BD262291DA52A6000EB586D /* AppDelegate.h */,
@@ -117,7 +117,6 @@
 				4B5247CF1DB0F34700D88AA3 /* appleLogo.png */,
 				4BD262261DA52A6000EB586D /* Supporting Files */,
 			);
-			name = TestingAppCodingVersion;
 			path = TestingApp;
 			sourceTree = "<group>";
 		};
