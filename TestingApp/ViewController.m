@@ -19,7 +19,7 @@ UIActivityIndicatorView *activityIndicator;
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSInteger n=(arc4random() % 4) + 1 ;
-    n=8;
+    n=7;
     
     switch (n) {
         case 1:
@@ -198,7 +198,7 @@ UIActivityIndicatorView *activityIndicator;
     slider.minimumValue=0;
     NSLog(@"%f", slider.value);
     [slider addTarget:self action:@selector(sliderHandle:) forControlEvents:UIControlEventValueChanged];
-    [slider addTarget:self action:@selector(sliderHandleStop:) forControlEvents:UIControlEventTouchUpOutside];
+    [slider addTarget:self action:@selector(sliderHandleStop:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     [label setBackgroundColor:[UIColor orangeColor]];
     [self.view addSubview:slider];
     [self.view addSubview:label];
@@ -241,7 +241,7 @@ UIActivityIndicatorView *activityIndicator;
 }
 
 - (void) showProgressView{
-    UIProgressView *progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(10, 50, 200, 20)];
+//    UIProgressView *progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(10, 50, 200, 20)];
     
 }
 
