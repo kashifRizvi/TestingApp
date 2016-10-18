@@ -19,7 +19,7 @@ UIActivityIndicatorView *activityIndicator;
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSInteger n=(arc4random() % 4) + 1 ;
-    n=7;
+    n=5;
     
     switch (n) {
         case 1:
@@ -169,9 +169,19 @@ UIActivityIndicatorView *activityIndicator;
 }
 
 - (void) showSegmentedControl{
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithFrame:CGRectMake(100, 100, 200, 100)];
-    segmentedControl.backgroundColor=[UIColor redColor];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"One", @"Two", @"Three" , nil]];
+    [segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
+    [segmentedControl setTintColor:[UIColor darkGrayColor]];
+//    [segmentedControl setSelectedSegmentIndex:0];
+    [segmentedControl setFrame:CGRectMake(10, 30, 300, 25)];
+    segmentedControl.backgroundColor=[UIColor cyanColor];
+    [segmentedControl addTarget:self action:@selector(handleSegmentedControl:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segmentedControl];
+}
+
+- (void) handleSegmentedControl: (UISegmentedControl *) sender{
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:[sender titleForSegmentAtIndex:sender.selectedSegmentIndex] message:[NSString stringWithFormat:@"You have selected key named %@", [sender titleForSegmentAtIndex:sender.selectedSegmentIndex]] delegate:sender cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void) showTextField{
