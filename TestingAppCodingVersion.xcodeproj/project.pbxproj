@@ -85,7 +85,7 @@
 		4BD2621A1DA52A6000EB586D = {
 			isa = PBXGroup;
 			children = (
-				4BD262251DA52A6000EB586D /* TestingApp */,
+				4BD262251DA52A6000EB586D /* TestingAppCodingVersion */,
 				4BD2623F1DA52A6000EB586D /* TestingAppTests */,
 				4BD2624A1DA52A6000EB586D /* TestingAppUITests */,
 				4BD262241DA52A6000EB586D /* Products */,
@@ -102,7 +102,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4BD262251DA52A6000EB586D /* TestingApp */ = {
+		4BD262251DA52A6000EB586D /* TestingAppCodingVersion */ = {
 			isa = PBXGroup;
 			children = (
 				4BD262291DA52A6000EB586D /* AppDelegate.h */,
@@ -117,6 +117,7 @@
 				4B5247CF1DB0F34700D88AA3 /* appleLogo.png */,
 				4BD262261DA52A6000EB586D /* Supporting Files */,
 			);
+			name = TestingAppCodingVersion;
 			path = TestingApp;
 			sourceTree = "<group>";
 		};
@@ -227,7 +228,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4BD2621E1DA52A6000EB586D /* Build configuration list for PBXProject "TestingApp" */;
+			buildConfigurationList = 4BD2621E1DA52A6000EB586D /* Build configuration list for PBXProject "TestingAppCodingVersion" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -499,7 +500,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4BD2621E1DA52A6000EB586D /* Build configuration list for PBXProject "TestingApp" */ = {
+		4BD2621E1DA52A6000EB586D /* Build configuration list for PBXProject "TestingAppCodingVersion" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4BD2624E1DA52A6000EB586D /* Debug */,
