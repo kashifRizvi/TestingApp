@@ -30,7 +30,6 @@
 
 - (void) mainViewButtonHandle: (UIButton *) sender{
     NSInteger n=(arc4random() % 8) + 1 ;
-    
     switch (n) {
         case 1:
             [self showLabel];
@@ -180,9 +179,7 @@
 
 - (void) showSegmentedControl{
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"One", @"Two", @"Three" , nil]];
-    [segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [segmentedControl setTintColor:[UIColor darkGrayColor]];
-//    [segmentedControl setSelectedSegmentIndex:0];
     [segmentedControl setFrame:CGRectMake(10, 30, 300, 25)];
     segmentedControl.backgroundColor=[UIColor cyanColor];
     [segmentedControl addTarget:self action:@selector(handleSegmentedControl:) forControlEvents:UIControlEventValueChanged];
